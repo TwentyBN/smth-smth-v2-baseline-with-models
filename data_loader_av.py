@@ -53,6 +53,8 @@ class VideoFolder(torch.utils.data.Dataset):
             print('{}: WEBM reader cannot open {}. Empty '
                   'list returned.'.format(type(exception).__name__, item.path))
 
+        reader.close()
+
         imgs = self.transform_pre(imgs)
         imgs, label = self.augmentor(imgs, item.label)
         imgs = self.transform_post(imgs)
